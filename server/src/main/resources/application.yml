@@ -1,0 +1,24 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          # git repository
+          uri: https://github.com/DmitryevichD/spring-config-server-configuration-repo.git
+          # default branch that is used for configs
+          default-label: production
+          # credentials
+          username: DmitrievichD
+          password: ${random.uuid}
+          # local working copy of repo
+          basedir: config-backup
+  security:
+    user:
+      name: user
+      password: secret
+
+# key uses to encrypt sensitive data before save its to repo
+encrypt:
+  key: ${random.uuid}

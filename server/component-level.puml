@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/component-diagram
+title System interaction diagram
+
+package "All services" {
+[service1]
+[service2]
+[service3]
+}
+
+component haproxy
+
+package "Spring config services" {
+    component "Spring config service 1" {
+        folder "local copy of config 1"
+    }
+    component "Spring config service 2" {
+        folder "local copy of config 2"
+    }
+}
+[haproxy] --> [Spring config services]: Балансировка
+[Spring config services] --> [Git repository]: Получение конфигов
+[All services] --> [haproxy]
+
+
+database "Git repository" {
+[production]
+[stage]
+[search]
+[qa]
+[dev]
+}
+
+@enduml
